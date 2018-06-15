@@ -41,6 +41,14 @@ router.put('/:id',(req,res)=>{
     
     
     };
+    school.findByIdAndUpdate(req.params.id,{$set:emp},{new:true},(err,doc)=>{
+        if(!err){
+            res.send(doc);}
+            else{ console.log('Error in schools update:'+JSON.stringify(err,undefined,2)); 
+        
+
+            }
+    });
 
 
 });
@@ -64,4 +72,21 @@ s.save((err,doc)=>{
     
 });
 });
+
+router.delete('/:id',(req,res)=>{
+    if(!ObjectId.isValid(req.params.id)){
+        return res.status(400).send(`No record with given id:,${req.params.id}`);   
+     }
+     school.findByIdAndRemove(req.params.id,(err,doc)=>{
+        if(!err){
+            res.send(doc);
+    
+        }
+        else{
+            console.log('Error in school save'+JSON.stringify(err,undefined,2));
+        }
+     });
+
+});
+
 module.exports=router;
