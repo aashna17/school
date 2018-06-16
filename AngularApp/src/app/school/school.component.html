@@ -1,3 +1,85 @@
-<p>
-  school works!
-</p>
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content white-text">
+        <div class="row">
+          <div class="col s5">
+          <form #schoolForm="ngForm" (ngSubmit)="onSubmit(schoolForm)">
+           
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="schoolService.selectedSchool._id">
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="text" name="name" #name="ngModel" [(ngModel)]="schoolService.selectedSchool.name" placeholder="Enter Full Name" required>
+                <label>Name:
+                  <label class="red-text">*</label>
+                </label>
+              </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="address" #address="ngModel" [(ngModel)]="schoolService.selectedSchool.address" placeholder="Enter School Address" required>
+                  <label>Address:
+                    <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div><div class="row">
+                  <div class="input-field col s12">
+                    <input type="text" name="board" #board="ngModel" [(ngModel)]="schoolService.selectedSchool.board" placeholder="Enter to which board school is affiliated to" required>
+                    <label>Board:
+                      <label class="red-text">*</label>
+                    </label>
+                  </div>
+                </div>
+                
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input type="text" name="mobileno" #mobileno="ngModel" [(ngModel)]="schoolService.selectedSchool.mobileno" placeholder="Enter School Contact Number" required>
+                      <label>Contact No:
+                        <label class="red-text">*</label>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <button class="btn btn-custom-right" type="button" (click)="resetForm(schoolForm)">Reset</button>
+                      <button class="btn btn-custom-right" type="submit" [disabled]="!schoolForm.valid">Submit</button>
+                    </div>
+                  </div>
+
+          </form>
+          </div>
+        <div class="col s7">
+           <table class="responsive-table highlight">
+             <thead>
+               <tr>
+                 <th>Name</th>
+                 <th>Address</th>
+                 <th>Board</th>
+                 <th>Contact Number</th>
+                
+               </tr>
+             </thead>
+             <tr *ngFor="let s of schoolService.schools">
+               <td>{{s.name}}</td>
+               <td>{{s.address}}</td>
+               <td>{{s.board}}</td>
+               <td>{{s.mobileno}}</td>
+               <td>
+                 <a class="action-btn">
+                   <i class="material-icons" (click)="onEdit(s)">edit</i>
+                 </a>
+                 <a class="action-btn">
+                  <i class="material-icons" (click)="onDelete(s._id,schoolForm)">delete</i>
+                </a>
+               </td>
+             </tr>
+           </table>
+        </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+       
