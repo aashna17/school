@@ -28,7 +28,7 @@ export class SchoolComponent implements OnInit {
       mobileno:null
     }
   }
-  onSubmit(form:NgForm){
+  /*onSubmit(form:NgForm){
     if(form.value._id==""){
     
 this.schoolService.postSchool(form.value).subscribe((res)=>{
@@ -38,14 +38,31 @@ this.schoolService.postSchool(form.value).subscribe((res)=>{
     });
   }
   else{
-    this.schoolService.postSchool(form.value).subscribe((res)=>{
+    this.schoolService.putSchool(form.value).subscribe((res)=>{
       this.resetForm(form); 
       this.refreshSchoolList();
       M.toast({html: 'Updated successfully',classes:'rounded'});
     
   });
 }
+}*/
+onSubmit(form: NgForm) {
+  if (form.value._id == "") {
+    this.schoolService.postSchool(form.value).subscribe((res) => {
+      this.resetForm(form);
+      this.refreshSchoolList();
+      M.toast({ html: 'Saved successfully', classes: 'rounded' });
+    });
+  }
+  else {
+    this.schoolService.putSchool(form.value).subscribe((res) => {
+      this.resetForm(form);
+      this.refreshSchoolList();
+      M.toast({ html: 'Updated successfully', classes: 'rounded' });
+    });
+  }
 }
+
   refreshSchoolList(){
     this.schoolService.getSchoolList().subscribe((res)=>{
       this.schoolService.schools=res as School[];

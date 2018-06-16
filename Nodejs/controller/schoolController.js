@@ -4,7 +4,7 @@ var ObjectId=require('mongoose').Types.ObjectId;
 //work with mongoose model school
 var {school}=require('../models/school');
 //localhost:3000/schools/
-//this will retrive all employees from the collection
+//this will retrive all schools from the collection
 router.get('/',(req,res)=>{
 school.find((err,docs)=>{
     if(!err){
@@ -41,7 +41,7 @@ router.put('/:id',(req,res)=>{
     
     
     };
-    school.findByIdAndUpdate(req.params.id,{$set:emp},{new:true},(err,doc)=>{
+    school.findByIdAndUpdate(req.params.id,{$set:s},{new:true},(err,doc)=>{
         if(!err){
             res.send(doc);}
             else{ console.log('Error in schools update:'+JSON.stringify(err,undefined,2)); 
