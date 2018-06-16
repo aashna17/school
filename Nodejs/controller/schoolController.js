@@ -83,8 +83,8 @@ router.delete('/:id',(req,res)=>{
     
         }
         else{
-            console.log('Error in school save'+JSON.stringify(err,undefined,2));
-        }
+            console.log('Error in school delete'+JSON.stringify(err,undefined,2));
+        } 
      });
 
 });
